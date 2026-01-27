@@ -20,9 +20,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
     e.preventDefault();
     setError(null);
     if (mode === 'login') {
-      const ok = await login(email, password);
-      if (!ok) {
-        setError('Email hoặc mật khẩu không đúng.');
+      const result = await login(email, password);
+      if (!result.success) {
+        setError(result.error || 'Email hoặc mật khẩu không đúng.');
         return;
       }
       onClose();
@@ -31,7 +31,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
         setError('Vui lòng nhập họ tên.');
         return;
       }
-      await signup(name.trim(), email, password);
+      const result = await signup(name.trim(), email, password);
+      if (!result.success) {
+        setError(result.error || 'Đăng ký thất bại.');
+        return;
+      }
       onClose();
     }
   };

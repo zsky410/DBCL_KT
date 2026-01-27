@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { trendingProducts, products } from '../data/mockData';
+import { productService, Product } from '../services/productService';
 
 export const HeroSection: React.FC = () => {
-  const featuredProduct = trendingProducts[0] || products[0];
+  const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      const trending = await productService.getTrending();
+      if (trending.length > 0) {
+        setFeaturedProduct(trending[0]);
+      } else {
+        const all = await productService.getAll();
+        if (all.length > 0) {
+          setFeaturedProduct(all[0]);
+        }
+      }
+    };
+    loadProduct();
+  }, []);
+
+  if (!featuredProduct) {
+    return null;
+  }
 
   return (
     <>
@@ -35,7 +54,7 @@ export const HeroSection: React.FC = () => {
             <img
               src={featuredProduct.image}
               alt={featuredProduct.name}
-              className="w-56 h-40 object-cover rounded-3xl"
+              className="w-56 h-40 object-cover object-center object-[center_65%] rounded-3xl"
             />
           </div>
           <Link

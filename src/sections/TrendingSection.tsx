@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { trendingProducts } from '../data/mockData';
+import { productService, Product } from '../services/productService';
 
 export const TrendingSection: React.FC = () => {
+  const [trendingProducts, setTrendingProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const products = await productService.getTrending();
+      setTrendingProducts(products);
+    };
+    loadProducts();
+  }, []);
+
   return (
     <section className="container-wide py-14">
       <div className="grid md:grid-cols-[1.2fr,2fr] gap-10 items-center">
@@ -23,25 +33,29 @@ export const TrendingSection: React.FC = () => {
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {trendingProducts.slice(0, 4).map((product) => (
-              <Link
-                key={product.id}
-                to={`/product/${product.id}`}
-                className="bg-white rounded-2xl shadow-card p-4 flex flex-col items-center text-center hover:shadow-xl transition-shadow"
-              >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-24 h-16 mb-4 object-cover rounded-xl"
-                />
-                <h3 className="text-xs font-medium mb-1">{product.name}</h3>
-                <p className="text-xs text-gray-700">
-                  {product.price.toLocaleString('vi-VN')} ₫
-                </p>
-              </Link>
-            ))}
-          </div>
+          {trendingProducts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {trendingProducts.slice(0, 4).map((product) => (
+                <Link
+                  key={product.id}
+                  to={`/product/${product.id}`}
+                  className="bg-white rounded-2xl shadow-card p-4 flex flex-col items-center text-center hover:shadow-xl transition-shadow"
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-24 h-16 mb-4 object-cover object-center object-[center_70%] rounded-xl"
+                  />
+                  <h3 className="text-xs font-medium mb-1">{product.name}</h3>
+                  <p className="text-xs text-gray-700">
+                    {product.price.toLocaleString('vi-VN')} ₫
+                  </p>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 text-sm">Đang tải sản phẩm...</p>
+          )}
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiSearch, FiShoppingBag, FiUser, FiLogOut } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useNotification } from '../context/NotificationContext';
 import { AuthModal } from './AuthModal';
 
 export const Header: React.FC = () => {
@@ -13,6 +14,7 @@ export const Header: React.FC = () => {
   const [cartPulse, setCartPulse] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { notify } = useNotification();
 
   useEffect(() => {
     if (totalCount > 0) {
@@ -24,19 +26,17 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    setSearch(params.get('search') ?? '');
+    setSearch(params.get('q') ?? '');
   }, [location.search]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = search.trim();
-    const params = new URLSearchParams(location.search);
     if (trimmed) {
-      params.set('search', trimmed);
+      navigate(`/shop?q=${encodeURIComponent(trimmed)}`);
     } else {
-      params.delete('search');
+      navigate('/shop');
     }
-    navigate(`/shop?${params.toString()}`);
   };
 
   const initials = user?.name
@@ -95,8 +95,16 @@ export const Header: React.FC = () => {
               <FiSearch className="h-5 w-5" />
             </button>
 
-            <Link
-              to="/cart"
+            <button
+              type="button"
+              onClick={() => {
+                if (!user) {
+                  setShowAuth(true);
+                  notify('info', 'Vui lòng đăng nhập để xem giỏ hàng.');
+                } else {
+                  navigate('/cart');
+                }
+              }}
               aria-label="Giỏ hàng"
               className={`relative flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-700 hover:text-gray-900 ${
                 cartPulse ? 'animate-bounce' : ''
@@ -108,7 +116,7 @@ export const Header: React.FC = () => {
                   {totalCount}
                 </span>
               )}
-            </Link>
+            </button>
 
             {user ? (
               <div className="relative group">

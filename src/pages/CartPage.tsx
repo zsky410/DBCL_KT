@@ -1,23 +1,94 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../sections/Footer';
-import { products } from '../data/mockData';
+import { productService, Product } from '../services/productService';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { useNotification } from '../context/NotificationContext';
+import { AuthModal } from '../components/AuthModal';
+
+interface CartProduct extends Product {
+  size: string;
+  color: string;
+  quantity: number;
+}
 
 export const CartPage: React.FC = () => {
-  const { items, updateItem, removeItem } = useCart();
+  const { items, updateItem, removeItem, loading: cartLoading } = useCart();
+  const { user } = useAuth();
+  const { notify } = useNotification();
+  const navigate = useNavigate();
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const cartProducts = items
-    .map((item) => {
-      const product = products.find((p) => p.id === item.productId);
-      return product ? { ...product, ...item } : null;
-    })
-    .filter(Boolean) as (typeof products[0] & (typeof items)[number])[];
+  const handleCheckout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!user) {
+      setShowAuthModal(true);
+      notify('info', 'Vui lòng đăng nhập để thanh toán.');
+      return;
+    }
+    navigate('/checkout');
+  };
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      if (items.length === 0) {
+        setCartProducts([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const products = await Promise.all(
+          items.map(async (item) => {
+            const product = await productService.getById(item.productId);
+            if (!product) return null;
+            return { ...product, ...item };
+          }),
+        );
+
+        setCartProducts(products.filter(Boolean) as CartProduct[]);
+      } catch (error) {
+        console.error('Error loading cart products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, [items]);
 
   const subtotal = cartProducts.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shipping = cartProducts.length > 0 ? 199 : 0;
+  const shipping = cartProducts.length > 0 ? 199000 : 0;
   const total = subtotal + shipping;
+
+  const handleUpdateQuantity = async (
+    productId: string,
+    size: string,
+    color: string,
+    quantity: number,
+  ) => {
+    await updateItem(productId, size, color, quantity);
+  };
+
+  const handleRemoveItem = async (productId: string, size: string, color: string) => {
+    await removeItem(productId, size, color);
+  };
+
+  if (loading || cartLoading) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Header />
+        <div className="container-wide py-12 text-center">
+          <p className="text-gray-600">Đang tải giỏ hàng...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (cartProducts.length === 0) {
     return (
@@ -41,6 +112,7 @@ export const CartPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Header />
+      <AuthModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
       <div className="container-wide py-12">
         <h1 className="text-3xl font-semibold mb-8">Giỏ Hàng</h1>
 
@@ -55,7 +127,7 @@ export const CartPage: React.FC = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-24 h-24 object-cover rounded-xl flex-shrink-0"
+                  className="w-24 h-24 object-cover object-center object-[center_70%] rounded-xl flex-shrink-0"
                 />
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
@@ -71,7 +143,7 @@ export const CartPage: React.FC = () => {
                       </p>
                     </div>
                     <button
-                      onClick={() => removeItem(item.productId)}
+                      onClick={() => handleRemoveItem(item.productId, item.size, item.color)}
                       className="text-gray-400 hover:text-gray-900"
                     >
                       ✕
@@ -81,7 +153,7 @@ export const CartPage: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() =>
-                          updateItem(item.productId, item.size, item.color, item.quantity - 1)
+                          handleUpdateQuantity(item.productId, item.size, item.color, item.quantity - 1)
                         }
                         className="w-8 h-8 rounded border border-gray-300 hover:bg-gray-100"
                       >
@@ -90,7 +162,7 @@ export const CartPage: React.FC = () => {
                       <span className="w-8 text-center">{item.quantity}</span>
                       <button
                         onClick={() =>
-                          updateItem(item.productId, item.size, item.color, item.quantity + 1)
+                          handleUpdateQuantity(item.productId, item.size, item.color, item.quantity + 1)
                         }
                         className="w-8 h-8 rounded border border-gray-300 hover:bg-gray-100"
                       >
@@ -124,12 +196,12 @@ export const CartPage: React.FC = () => {
                   <span>{total.toLocaleString('vi-VN')} ₫</span>
                 </div>
               </div>
-              <Link
-                to="/checkout"
+              <button
+                onClick={handleCheckout}
                 className="block w-full px-6 py-3 bg-black text-white rounded-full text-center font-medium hover:bg-gray-800 transition-colors"
               >
                 Thanh toán
-              </Link>
+              </button>
               <Link
                 to="/shop"
                 className="block w-full mt-3 px-6 py-3 border-2 border-black rounded-full text-center font-medium hover:bg-gray-50 transition-colors"

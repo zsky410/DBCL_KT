@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../data/mockData';
+import { Product } from '../services/productService';
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +15,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showNewBadge 
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+            className="w-full h-full object-cover object-center object-[center_70%] group-hover:scale-110 transition-transform"
           />
         </div>
         {showNewBadge && product.isNew && (

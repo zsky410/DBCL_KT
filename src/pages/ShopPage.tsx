@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../sections/Footer';
 import { ProductCard } from '../components/ProductCard';
-import { products, categories, Product } from '../data/mockData';
+import { productService, Product } from '../services/productService';
+
+const categories: Product['category'][] = ['Unisex', 'Nữ', 'Nam', 'Trẻ em'];
 
 export const ShopPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
   const [selectedCategory, setSelectedCategory] = useState<Product['category'] | 'Tất cả'>('Tất cả');
   const [sortBy, setSortBy] = useState<'price-asc' | 'price-desc' | 'name'>('name');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      try {
+        const data = searchQuery
+          ? await productService.search(searchQuery)
+          : await productService.getAll();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, [searchQuery]);
 
   let filteredProducts = products;
 
@@ -74,14 +99,27 @@ export const ShopPage: React.FC = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="mb-4 text-sm text-gray-600">
-          Hiển thị {filteredProducts.length} sản phẩm
-        </div>
-        <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-12">
+            <p className="text-gray-600">Đang tải sản phẩm...</p>
+          </div>
+        ) : (
+          <>
+            <div className="mb-4 text-sm text-gray-600">
+              Hiển thị {filteredProducts.length} sản phẩm
+            </div>
+            <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+            {filteredProducts.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-600">Không tìm thấy sản phẩm nào.</p>
+              </div>
+            )}
+          </>
+        )}
       </div>
       <Footer />
     </div>

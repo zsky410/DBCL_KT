@@ -1,20 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../sections/Footer';
-import { products } from '../data/mockData';
+import { productService, Product } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
+import { useAuth } from '../context/AuthContext';
+import { AuthModal } from '../components/AuthModal';
 
 export const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const product = products.find((p) => p.id === id);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const { addItem } = useCart();
   const { notify } = useNotification();
+  const { user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      if (!id) return;
+      setLoading(true);
+      try {
+        const data = await productService.getById(id);
+        setProduct(data);
+        if (data?.sizes && data.sizes.length > 0) {
+          setSelectedSize(data.sizes[0]);
+        }
+        if (data?.colors && data.colors.length > 0) {
+          setSelectedColor(data.colors[0]);
+        }
+      } catch (error) {
+        console.error('Error loading product:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProduct();
+  }, [id]);
+
+  const handleAddToCart = async () => {
+    if (!product) return;
+
+    if (!user) {
+      setShowAuthModal(true);
+      notify('info', 'Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.');
+      return;
+    }
+
+    if (!selectedSize) {
+      notify('error', 'Vui lòng chọn size trước khi thêm vào giỏ.');
+      return;
+    }
+
+    try {
+      await addItem({
+        productId: product.id,
+        size: selectedSize,
+        color: selectedColor || '',
+        quantity,
+      });
+
+      notify(
+        'success',
+        `Đã thêm ${quantity} x ${product.name} (Size: ${selectedSize}) vào giỏ hàng.`,
+      );
+    } catch (error: any) {
+      if (error.message?.includes('đăng nhập')) {
+        setShowAuthModal(true);
+      }
+      notify('error', error.message || 'Không thể thêm vào giỏ hàng.');
+    }
+  };
+
+  const handleBuyNow = async () => {
+    if (!product) return;
+
+    if (!user) {
+      setShowAuthModal(true);
+      notify('info', 'Vui lòng đăng nhập để mua hàng.');
+      return;
+    }
+
+    if (!selectedSize) {
+      notify('error', 'Vui lòng chọn size trước khi mua ngay.');
+      return;
+    }
+
+    try {
+      await addItem({
+        productId: product.id,
+        size: selectedSize,
+        color: selectedColor || '',
+        quantity,
+      });
+
+      navigate('/checkout');
+      notify('success', 'Đã thêm sản phẩm vào giỏ. Vui lòng hoàn tất thông tin thanh toán.');
+    } catch (error: any) {
+      if (error.message?.includes('đăng nhập')) {
+        setShowAuthModal(true);
+      }
+      notify('error', error.message || 'Không thể thêm vào giỏ hàng.');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <Header />
+        <div className="container-wide py-12 text-center">
+          <p className="text-gray-600">Đang tải sản phẩm...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -31,45 +137,10 @@ export const ProductDetailPage: React.FC = () => {
     );
   }
 
-  const handleAddToCart = () => {
-    if (!selectedSize) {
-      notify('error', 'Vui lòng chọn size trước khi thêm vào giỏ.');
-      return;
-    }
-
-    addItem({
-      productId: product.id,
-      size: selectedSize,
-      color: selectedColor || '',
-      quantity,
-    });
-
-    notify(
-      'success',
-      `Đã thêm ${quantity} x ${product.name} (Size: ${selectedSize}) vào giỏ hàng.`,
-    );
-  };
-
-  const handleBuyNow = () => {
-    if (!selectedSize) {
-      notify('error', 'Vui lòng chọn size trước khi mua ngay.');
-      return;
-    }
-
-    addItem({
-      productId: product.id,
-      size: selectedSize,
-      color: selectedColor || '',
-      quantity,
-    });
-
-    navigate('/checkout');
-    notify('success', 'Đã thêm sản phẩm vào giỏ. Vui lòng hoàn tất thông tin thanh toán.');
-  };
-
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Header />
+      <AuthModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
       <div className="container-wide py-12">
         <div className="mb-4 text-sm text-gray-600">
           <Link to="/shop" className="hover:underline">
@@ -90,7 +161,7 @@ export const ProductDetailPage: React.FC = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center object-[center_65%]"
               />
             </div>
             {product.isNew && (
