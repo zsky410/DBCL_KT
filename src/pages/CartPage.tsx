@@ -80,11 +80,11 @@ export const CartPage: React.FC = () => {
 
   if (loading || cartLoading) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Header />
-        <div className="container-wide py-12 text-center">
+        <main className="flex-1 flex items-center justify-center">
           <p className="text-gray-600">Đang tải giỏ hàng...</p>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -92,8 +92,9 @@ export const CartPage: React.FC = () => {
 
   if (cartProducts.length === 0) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Header />
+        <main className="flex-1 flex items-center justify-center">
         <div className="container-wide py-12 text-center">
           <h1 className="text-3xl font-semibold mb-4">Giỏ hàng của bạn trống</h1>
           <p className="text-gray-600 mb-8">Thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm.</p>
@@ -104,15 +105,17 @@ export const CartPage: React.FC = () => {
             Tiếp tục mua sắm
           </Link>
         </div>
+        </main>
         <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
       <AuthModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
+      <main className="flex-1">
       <div className="container-wide py-12">
         <h1 className="text-3xl font-semibold mb-8">Giỏ Hàng</h1>
 
@@ -212,6 +215,7 @@ export const CartPage: React.FC = () => {
           </div>
         </div>
       </div>
+      </main>
       <Footer />
     </div>
   );

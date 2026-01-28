@@ -15,31 +15,31 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-black text-white py-10 mt-10">
-      <div className="container-wide grid gap-8 md:grid-cols-3 items-start text-sm">
+    <footer className="bg-black text-white py-12 mt-12">
+      <div className="container-wide grid gap-10 md:grid-cols-3 items-start text-base">
         <div>
-          <Link to="/" className="text-lg font-semibold mb-3 block hover:opacity-80">
+          <Link to="/" className="text-xl font-semibold mb-4 block hover:opacity-80">
             Slick
           </Link>
-          <p className="text-xs text-gray-400 max-w-xs">
+          <p className="text-sm text-gray-400 max-w-sm leading-relaxed">
             Cửa hàng giày thời trang với đa dạng mẫu mã, chất lượng cao và giá cả hợp lý. Chúng
             tôi cam kết mang đến trải nghiệm mua sắm tốt nhất cho khách hàng.
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-3">Đăng ký nhận tin</h4>
+          <h4 className="text-base font-semibold mb-4">Đăng ký nhận tin</h4>
           <form onSubmit={handleSubscribe} className="flex gap-2">
             <input
               type="email"
               placeholder="Nhập email..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white/50"
+              className="w-full px-4 py-3 rounded-full bg-white/10 border border-white/20 text-sm placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white/50"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-full bg-white text-black text-xs font-semibold shrink-0 hover:bg-gray-100 transition-colors"
+              className="px-5 py-3 rounded-full bg-white text-black text-sm font-semibold shrink-0 hover:bg-gray-100 transition-colors"
             >
               Đăng ký
             </button>
@@ -47,8 +47,8 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="md:text-right">
-          <h4 className="text-sm font-semibold mb-3">Liên Kết Nhanh</h4>
-          <ul className="space-y-1 text-xs text-gray-400">
+          <h4 className="text-base font-semibold mb-4">Liên Kết Nhanh</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
             <li>
               <Link to="/" className="hover:text-white transition-colors">
                 Trang chủ
@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="container-wide mt-8 text-[11px] text-gray-500 flex justify-between items-center">
+      <div className="container-wide mt-10 text-sm text-gray-500 flex justify-between items-center">
         <span>© Slick. Bảo lưu mọi quyền.</span>
         <span className="hidden md:inline">Điều khoản & Điều kiện</span>
       </div>

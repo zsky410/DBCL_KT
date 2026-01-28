@@ -47,8 +47,9 @@ export const ShopPage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
+      <main className="flex-1">
       <div className="container-wide py-12">
         <h1 className="text-4xl font-semibold mb-8">Cửa Hàng</h1>
 
@@ -121,6 +122,7 @@ export const ShopPage: React.FC = () => {
           </>
         )}
       </div>
+      </main>
       <Footer />
     </div>
   );

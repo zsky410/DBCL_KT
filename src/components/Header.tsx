@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiSearch, FiShoppingBag, FiUser, FiLogOut } from 'react-icons/fi';
+import { FiSearch, FiShoppingBag, FiUser, FiLogOut, FiPackage } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
@@ -12,6 +12,8 @@ export const Header: React.FC = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [search, setSearch] = useState('');
   const [cartPulse, setCartPulse] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { notify } = useNotification();
@@ -28,6 +30,12 @@ export const Header: React.FC = () => {
     const params = new URLSearchParams(location.search);
     setSearch(params.get('q') ?? '');
   }, [location.search]);
+
+  useEffect(() => {
+    return () => {
+      if (userMenuCloseTimer.current) clearTimeout(userMenuCloseTimer.current);
+    };
+  }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +56,17 @@ export const Header: React.FC = () => {
         .toUpperCase()
     : '';
 
+  const pathname = location.pathname;
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    if (path === '/shop') return pathname === '/shop' || pathname.startsWith('/product/');
+    return pathname === path || pathname.startsWith(path + '/');
+  };
+  const navLinkClass = (path: string) =>
+    isActive(path)
+      ? 'text-gray-900'
+      : 'text-gray-500 hover:text-gray-900';
+
   return (
     <>
       <header className="border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur z-50">
@@ -57,16 +76,16 @@ export const Header: React.FC = () => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <Link to="/" className="text-gray-900 hover:text-gray-600">
+            <Link to="/" className={navLinkClass('/')}>
               Trang chủ
             </Link>
-            <Link to="/shop" className="text-gray-500 hover:text-gray-900">
+            <Link to="/shop" className={navLinkClass('/shop')}>
               Cửa hàng
             </Link>
-            <Link to="/collection" className="text-gray-500 hover:text-gray-900">
+            <Link to="/collection" className={navLinkClass('/collection')}>
               Bộ sưu tập
             </Link>
-            <Link to="/customize" className="text-gray-500 hover:text-gray-900">
+            <Link to="/customize" className={navLinkClass('/customize')}>
               Tùy chỉnh
             </Link>
           </nav>
@@ -119,7 +138,19 @@ export const Header: React.FC = () => {
             </button>
 
             {user ? (
-              <div className="relative group">
+              <div
+                className="relative"
+                onMouseEnter={() => {
+                  if (userMenuCloseTimer.current) {
+                    clearTimeout(userMenuCloseTimer.current);
+                    userMenuCloseTimer.current = null;
+                  }
+                  setUserMenuOpen(true);
+                }}
+                onMouseLeave={() => {
+                  userMenuCloseTimer.current = setTimeout(() => setUserMenuOpen(false), 300);
+                }}
+              >
                 <button
                   type="button"
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900 text-xs font-semibold text-white"
@@ -127,16 +158,29 @@ export const Header: React.FC = () => {
                 >
                   {initials || <FiUser className="h-4 w-4" />}
                 </button>
-                <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute right-0 mt-2 w-40 rounded-xl border border-gray-200 bg-white p-2 text-xs text-gray-700 shadow-lg transition">
-                  <p className="px-2 py-1 font-semibold truncate">{user.name}</p>
-                  <button
-                    type="button"
-                    onClick={logout}
-                    className="mt-1 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-50"
-                  >
-                    <FiLogOut className="h-4 w-4" />
-                    <span>Đăng xuất</span>
-                  </button>
+                <div
+                  className={`absolute right-0 pt-1 top-full ${userMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'} transition-all duration-150`}
+                  aria-hidden={!userMenuOpen}
+                >
+                  <div className="mt-1 w-44 rounded-xl border border-gray-200 bg-white p-2 text-xs text-gray-700 shadow-lg">
+                    <p className="px-2 py-1.5 font-semibold truncate">{user.name}</p>
+                    <Link
+                      to="/profile"
+                      className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-50"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <FiPackage className="h-4 w-4" />
+                      <span>Đơn hàng của tôi</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={logout}
+                      className="mt-0.5 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-gray-50"
+                    >
+                      <FiLogOut className="h-4 w-4" />
+                      <span>Đăng xuất</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (

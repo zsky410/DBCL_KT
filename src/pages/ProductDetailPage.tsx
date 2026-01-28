@@ -112,11 +112,11 @@ export const ProductDetailPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Header />
-        <div className="container-wide py-12 text-center">
+        <main className="flex-1 flex items-center justify-center">
           <p className="text-gray-600">Đang tải sản phẩm...</p>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -124,23 +124,26 @@ export const ProductDetailPage: React.FC = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Header />
-        <div className="container-wide py-12 text-center">
-          <h1 className="text-2xl font-semibold mb-4">Không tìm thấy sản phẩm</h1>
-          <Link to="/shop" className="text-blue-600 hover:underline">
-            Quay lại cửa hàng
-          </Link>
-        </div>
+        <main className="flex-1 flex items-center justify-center">
+          <div className="container-wide py-12 text-center">
+            <h1 className="text-2xl font-semibold mb-4">Không tìm thấy sản phẩm</h1>
+            <Link to="/shop" className="text-blue-600 hover:underline">
+              Quay lại cửa hàng
+            </Link>
+          </div>
+        </main>
         <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
       <AuthModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
+      <main className="flex-1">
       <div className="container-wide py-12">
         <div className="mb-4 text-sm text-gray-600">
           <Link to="/shop" className="hover:underline">
@@ -284,6 +287,7 @@ export const ProductDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+      </main>
       <Footer />
     </div>
   );

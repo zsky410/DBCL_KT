@@ -4,8 +4,9 @@ import { Footer } from '../sections/Footer';
 
 export const CustomizePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
+      <main className="flex-1">
       <div className="container-wide py-12">
         <h1 className="text-4xl font-semibold mb-4">Tùy Chỉnh Giày Của Bạn</h1>
         <p className="text-gray-600 mb-8 max-w-2xl">
@@ -46,6 +47,7 @@ export const CustomizePage: React.FC = () => {
           </p>
         </div>
       </div>
+      </main>
       <Footer />
     </div>
   );

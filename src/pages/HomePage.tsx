@@ -9,13 +9,15 @@ import { Footer } from '../sections/Footer';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
-      <HeroSection />
-      <TrendingSection />
-      <BannerSection />
-      <CategoryGridSection />
-      <TestimonialSection />
+      <main className="flex-1">
+        <HeroSection />
+        <TrendingSection />
+        <BannerSection />
+        <CategoryGridSection />
+        <TestimonialSection />
+      </main>
       <Footer />
     </div>
   );

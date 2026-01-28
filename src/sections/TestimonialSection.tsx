@@ -13,36 +13,36 @@ export const TestimonialSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-muted py-16">
+    <section className="bg-muted py-20">
       <div className="container-wide">
-        <h2 className="text-2xl font-semibold text-center mb-10">— Đánh Giá Khách Hàng —</h2>
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">— Đánh Giá Khách Hàng —</h2>
         {testimonials.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-3">
             {testimonials.map((t) => (
               <article
                 key={t.id}
-                className="bg-white rounded-3xl shadow-card px-6 py-6 flex flex-col gap-3"
+                className="bg-white rounded-3xl shadow-card px-8 py-8 flex flex-col gap-4"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-5">
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-16 h-16 rounded-full object-cover flex-shrink-0"
                   />
                   <div>
-                    <p className="font-semibold text-sm">{t.name}</p>
-                    <p className="text-[11px] text-gray-500">{t.role}</p>
-                    <p className="text-xs mt-1 text-yellow-500">
+                    <p className="font-semibold text-base">{t.name}</p>
+                    <p className="text-sm text-gray-500">{t.role}</p>
+                    <p className="text-sm mt-1 text-yellow-500">
                       {'★'.repeat(t.rating)}
                     </p>
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed">{t.text}</p>
+                <p className="text-sm md:text-base text-gray-500 leading-relaxed">{t.text}</p>
               </article>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500">Chưa có đánh giá nào.</p>
+          <p className="text-center text-gray-500 text-base">Chưa có đánh giá nào.</p>
         )}
       </div>
     </section>

@@ -26,51 +26,51 @@ export const HeroSection: React.FC = () => {
 
   return (
     <>
-      <section className="container-wide py-12 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+      <section className="container-wide py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className="uppercase tracking-[0.3em] text-xs text-gray-400 mb-4">
+          <p className="uppercase tracking-[0.3em] text-sm text-gray-400 mb-5">
             Tối Ưu
           </p>
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6">
             Tìm Đôi Giày
             <br />
             Hoàn Hảo
             <br />
             Cùng Chúng Tôi
           </h1>
-          <p className="text-gray-500 text-sm md:text-base mb-8 max-w-md">
+          <p className="text-gray-500 text-base md:text-lg mb-10 max-w-lg">
             Khám phá bộ sưu tập giày đa dạng với chất lượng cao và thiết kế thời trang.
           </p>
           <Link
             to="/shop"
-            className="inline-block px-6 py-3 bg-black text-white rounded-full text-sm font-medium shadow-lg hover:bg-gray-800 transition-colors"
+            className="inline-block px-8 py-4 bg-black text-white rounded-full text-base font-medium shadow-lg hover:bg-gray-800 transition-colors"
           >
             Mua Ngay
           </Link>
         </div>
 
         <div className="relative flex justify-center md:justify-end">
-          <div className="relative w-72 h-72 md:w-80 md:h-80 bg-gradient-to-b from-gray-100 to-white rounded-full flex items-center justify-center shadow-card overflow-hidden">
+          <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] bg-gradient-to-b from-gray-100 to-white rounded-full flex items-center justify-center shadow-card overflow-hidden">
             <img
               src={featuredProduct.image}
               alt={featuredProduct.name}
-              className="w-56 h-40 object-cover object-center object-[center_65%] rounded-3xl"
+              className="w-72 h-52 md:w-80 md:h-56 object-cover object-center object-[center_65%] rounded-3xl"
             />
           </div>
           <Link
             to={`/product/${featuredProduct.id}`}
-            className="absolute bottom-4 right-6 bg-white/90 px-4 py-3 rounded-xl shadow-card text-sm hover:shadow-xl transition-shadow"
+            className="absolute bottom-6 right-8 bg-white/90 px-5 py-4 rounded-xl shadow-card text-base hover:shadow-xl transition-shadow"
           >
             <p className="font-medium">{featuredProduct.name}</p>
-            <p className="text-gray-700 mt-1">
+            <p className="text-gray-700 mt-1.5 text-sm">
               {featuredProduct.price.toLocaleString('vi-VN')} ₫
             </p>
           </Link>
         </div>
       </section>
 
-      <div className="bg-black py-4">
-        <div className="container-wide flex flex-wrap items-center justify-center gap-8 text-white text-xs uppercase tracking-[0.25em] opacity-80">
+      <div className="bg-black py-5">
+        <div className="container-wide flex flex-wrap items-center justify-center gap-10 text-white text-sm uppercase tracking-[0.25em] opacity-80">
           <span>ebay</span>
           <span>amazon.com</span>
           <span>AJIO</span>

@@ -43,11 +43,11 @@ export const CheckoutPage: React.FC = () => {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Header />
-        <div className="container-wide py-12 text-center">
+        <main className="flex-1 flex items-center justify-center">
           <p className="text-gray-600">Đang kiểm tra đăng nhập...</p>
-        </div>
+        </main>
         <Footer />
       </div>
     );
@@ -160,8 +160,9 @@ export const CheckoutPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
+      <main className="flex-1">
       <div className="container-wide py-12">
         <h1 className="text-3xl font-semibold mb-8">Thanh Toán</h1>
 
@@ -339,6 +340,7 @@ export const CheckoutPage: React.FC = () => {
           </div>
         </form>
       </div>
+      </main>
       <Footer />
     </div>
   );

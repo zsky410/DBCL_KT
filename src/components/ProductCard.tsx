@@ -5,13 +5,16 @@ import { Product } from '../services/productService';
 interface ProductCardProps {
   product: Product;
   showNewBadge?: boolean;
+  size?: 'default' | 'large';
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, showNewBadge = true }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, showNewBadge = true, size = 'default' }) => {
+  const isLarge = size === 'large';
+
   return (
-    <article className="bg-white rounded-3xl shadow-card p-4 flex flex-col hover:shadow-xl transition-shadow">
-      <Link to={`/product/${product.id}`} className="relative mb-4 group">
-        <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center overflow-hidden">
+    <article className={`bg-white rounded-3xl shadow-card flex flex-col hover:shadow-xl transition-shadow ${isLarge ? 'p-5' : 'p-4'}`}>
+      <Link to={`/product/${product.id}`} className={`relative group ${isLarge ? 'mb-5' : 'mb-4'}`}>
+        <div className={`w-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center overflow-hidden ${isLarge ? 'h-52' : 'h-40'}`}>
           <img
             src={product.image}
             alt={product.name}
@@ -19,22 +22,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showNewBadge 
           />
         </div>
         {showNewBadge && product.isNew && (
-          <span className="absolute top-3 left-3 text-[10px] font-semibold px-2 py-1 rounded-full bg-black text-white">
+          <span className={`absolute top-3 left-3 font-semibold rounded-full bg-black text-white ${isLarge ? 'text-xs px-3 py-1.5' : 'text-[10px] px-2 py-1'}`}>
             MỚI
           </span>
         )}
         <Link
           to={`/product/${product.id}`}
-          className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black text-white text-xs flex items-center justify-center hover:bg-gray-800 transition-colors"
+          className={`absolute bottom-3 right-3 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-colors ${isLarge ? 'w-10 h-10 text-sm' : 'w-8 h-8 text-xs'}`}
         >
           ↗
         </Link>
       </Link>
       <Link to={`/product/${product.id}`} className="flex-1 flex flex-col">
-        <h3 className="text-sm font-medium mb-2 hover:text-gray-600 transition-colors">
+        <h3 className={`font-medium hover:text-gray-600 transition-colors ${isLarge ? 'text-base mb-3' : 'text-sm mb-2'}`}>
           {product.name}
         </h3>
-        <div className="mt-auto text-sm">
+        <div className={`mt-auto ${isLarge ? 'text-base' : 'text-sm'}`}>
           <span className="font-semibold mr-2">
             {product.price.toLocaleString('vi-VN')} ₫
           </span>
