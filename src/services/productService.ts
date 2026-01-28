@@ -1,4 +1,5 @@
-import { supabase } from '../lib/supabase';
+import { collection, getDocs, getDoc, doc, DocumentSnapshot } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 export interface Product {
   id: string;
@@ -16,120 +17,61 @@ export interface Product {
   gender?: string;
 }
 
+const COL = 'products';
+
+function mapDoc(d: DocumentSnapshot): Product | null {
+  const data = d.data();
+  if (!data) return null;
+  return {
+    id: d.id,
+    name: data.name ?? '',
+    price: Number(data.price ?? 0),
+    oldPrice: data.oldPrice != null ? Number(data.oldPrice) : undefined,
+    category: data.category ?? '',
+    image: data.imageUrl ?? data.image_url ?? '',
+    description: data.description ?? '',
+    isNew: data.isNew ?? data.is_new ?? false,
+    isTrending: data.isTrending ?? data.is_trending ?? false,
+    sizes: data.sizes ?? [],
+    colors: data.colors ?? [],
+    bestForWear: data.bestForWear ?? data.best_for_wear,
+    gender: data.gender,
+  };
+}
+
 export const productService = {
   async getAll(): Promise<Product[]> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching products:', error);
+    try {
+      const snap = await getDocs(collection(db, COL));
+      const list = snap.docs.map((d) => mapDoc(d)).filter(Boolean) as Product[];
+      if (list.length === 0) {
+        console.warn('Firestore products rỗng. Chạy: npm run seed (trong thư mục web-shop) rồi deploy Firestore rules nếu cần.');
+      }
+      return list;
+    } catch (e) {
+      console.error('Lỗi đọc products từ Firestore:', e);
       return [];
     }
-
-    return (data || []).map((p) => ({
-      id: p.id,
-      name: p.name,
-      price: p.price,
-      oldPrice: p.old_price,
-      category: p.category,
-      image: p.image_url,
-      description: p.description || '',
-      isNew: p.is_new,
-      isTrending: p.is_trending,
-      sizes: p.sizes || [],
-      colors: p.colors || [],
-      bestForWear: p.best_for_wear,
-      gender: p.gender,
-    }));
   },
 
   async getById(id: string): Promise<Product | null> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('id', id)
-      .single();
-
-    if (error || !data) {
-      console.error('Error fetching product:', error);
-      return null;
-    }
-
-    return {
-      id: data.id,
-      name: data.name,
-      price: data.price,
-      oldPrice: data.old_price,
-      category: data.category,
-      image: data.image_url,
-      description: data.description || '',
-      isNew: data.is_new,
-      isTrending: data.is_trending,
-      sizes: data.sizes || [],
-      colors: data.colors || [],
-      bestForWear: data.best_for_wear,
-      gender: data.gender,
-    };
+    const d = await getDoc(doc(db, COL, id));
+    return mapDoc(d);
   },
 
   async getTrending(): Promise<Product[]> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('is_trending', true)
-      .order('created_at', { ascending: false })
-      .limit(3);
-
-    if (error) {
-      console.error('Error fetching trending products:', error);
-      return [];
-    }
-
-    return (data || []).map((p) => ({
-      id: p.id,
-      name: p.name,
-      price: p.price,
-      oldPrice: p.old_price,
-      category: p.category,
-      image: p.image_url,
-      description: p.description || '',
-      isNew: p.is_new,
-      isTrending: p.is_trending,
-      sizes: p.sizes || [],
-      colors: p.colors || [],
-      bestForWear: p.best_for_wear,
-      gender: p.gender,
-    }));
+    const all = await this.getAll();
+    return all.filter((p) => p.isTrending).slice(0, 3);
   },
 
-  async search(query: string): Promise<Product[]> {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .or(`name.ilike.%${query}%,description.ilike.%${query}%`)
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error searching products:', error);
-      return [];
-    }
-
-    return (data || []).map((p) => ({
-      id: p.id,
-      name: p.name,
-      price: p.price,
-      oldPrice: p.old_price,
-      category: p.category,
-      image: p.image_url,
-      description: p.description || '',
-      isNew: p.is_new,
-      isTrending: p.is_trending,
-      sizes: p.sizes || [],
-      colors: p.colors || [],
-      bestForWear: p.best_for_wear,
-      gender: p.gender,
-    }));
+  async search(queryText: string): Promise<Product[]> {
+    const all = await this.getAll();
+    const q = (queryText || '').toLowerCase();
+    if (!q) return all;
+    return all.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q)
+    );
   },
 };

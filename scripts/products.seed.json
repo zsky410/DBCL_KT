@@ -1,0 +1,1275 @@
+[
+  {
+    "id": "HP9426",
+    "name": "Breaknet 2.0 Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/2474f3034df146b58c89af2c0011f75c_9366/Breaknet_2.0_Schuh_Weiss_HP9426_01_standard.jpg",
+    "description": "Breaknet 2.0 Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "HQ4199",
+    "name": "Ultraboost 1.0 Laufschuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/4ff790231b7f461baee3c291e96b74af_9366/Ultraboost_1.0_Laufschuh_Schwarz_HQ4199_HM1.jpg",
+    "description": "Ultraboost 1.0 Laufschuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Beam Green"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "JQ2552",
+    "name": "Adizero Boston 12 Laufschuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7a953806c287401884d6800a3f0d8340_9366/Adizero_Boston_12_Laufschuh_Weiss_JQ2552_01_00_standard.jpg",
+    "description": "Adizero Boston 12 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black",
+      "Lucid Red"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "JI1896",
+    "name": "NY 90 Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/44fa0be4b301487ab5e5f928abc27262_9366/NY_90_Schuh_Weiss_JI1896_01_standard.jpg",
+    "description": "NY 90 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Crystal White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IE8976",
+    "name": "Ultraboost 1.0 Laufschuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/29602e3589a54e4aad28ba0090edbf94_9366/Ultraboost_1.0_Laufschuh_Grau_IE8976_HM1.jpg",
+    "description": "Ultraboost 1.0 Laufschuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Grey One.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Grey One",
+      "Grey Three"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "HQ4202",
+    "name": "Ultraboost 1.0 Laufschuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/f0ca2dd8bdb84a2ab11faacb8802c4dc_9366/Ultraboost_1.0_Laufschuh_Weiss_HQ4202_HM1.jpg",
+    "description": "Ultraboost 1.0 Laufschuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "IH5467",
+    "name": "Breaknet Sleek Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/9403730c077b4221b51acf25fd197359_9366/Breaknet_Sleek_Schuh_Blau_IH5467_01_standard.jpg",
+    "description": "Breaknet Sleek Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Shadow Navy.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Shadow Navy",
+      "Pink Spark",
+      "Off White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "W"
+  },
+  {
+    "id": "JI1899",
+    "name": "NY 90 Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/e3cdf3862e0e42e7ba80bc3c2e47822e_9366/NY_90_Schuh_Weiss_JI1899_01_standard.jpg",
+    "description": "NY 90 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Grey One"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IF9419",
+    "name": "Adizero Adios 9 Laufschuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/12ae2e974abd4d369e43b8639c7220c5_9366/Adizero_Adios_9_Laufschuh_Weiss_IF9419_HM1.jpg",
+    "description": "Adizero Adios 9 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black",
+      "Silver Metallic"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "JI4476",
+    "name": "Adizero Boston 12 Laufschuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/76a5051dfe564e58ab12b9d6d4f674f9_9366/Adizero_Boston_12_Laufschuh_Weiss_JI4476_HM1.jpg",
+    "description": "Adizero Boston 12 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Core White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core White",
+      "Dark Blue",
+      "Pure Ruby"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "IH5751",
+    "name": "Adizero Adios 9 Laufschuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7997077b448349b2ad25e5f9f781cb19_9366/Adizero_Adios_9_Laufschuh_Schwarz_IH5751_HM1.jpg",
+    "description": "Adizero Adios 9 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Iron Metallic"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "HQ4201",
+    "name": "Ultraboost 1.0 Laufschuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/bad84b99019d4386a67cd03ecc51c0a4_9366/Ultraboost_1.0_Laufschuh_Schwarz_HQ4201_HM1.jpg",
+    "description": "Ultraboost 1.0 Laufschuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "chalk white",
+      "Beam Green"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "HP6010",
+    "name": "VS Pace 2.0 Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/5ca02ad6273c42e59108af4900f4acd8_9366/VS_Pace_2.0_Schuh_Weiss_HP6010_01_standard.jpg",
+    "description": "VS Pace 2.0 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IF9418",
+    "name": "Adizero Adios 9 Laufschuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/b4d0ab34cfb445a88d6f493027ff1eba_9366/Adizero_Adios_9_Laufschuh_Weiss_IF9418_HM1.jpg",
+    "description": "Adizero Adios 9 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black",
+      "Lucid Red"
+    ],
+    "bestForWear": "Racing",
+    "gender": "W"
+  },
+  {
+    "id": "HP9425",
+    "name": "Breaknet 2.0 Schuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/6585727660ea4fe1918eaf2c0018433f_9366/Breaknet_2.0_Schuh_Schwarz_HP9425_01_standard.jpg",
+    "description": "Breaknet 2.0 Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "IE8593",
+    "name": "Runfalcon 5 Kids Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/8d36c7c56ce54e84a8c678351175da6c_9366/Runfalcon_5_Kids_Schuh_Weiss_IE8593_01_standard.jpg",
+    "description": "Runfalcon 5 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "IG7323",
+    "name": "Racer TR23 Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Nam",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/595712d9ae664c7497e1324fd35b607e_9366/Racer_TR23_Schuh_Schwarz_IG7323_01_standard.jpg",
+    "description": "Racer TR23 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White",
+      "Grey Four"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "M"
+  },
+  {
+    "id": "GW9195",
+    "name": "Grand Court Cloudfoam Comfort Schuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/6e7885e14f144b998c75368fcd5ececf_9366/Grand_Court_Cloudfoam_Comfort_Schuh_Weiss_GW9195_HM1.jpg",
+    "description": "Grand Court Cloudfoam Comfort Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "IG7322",
+    "name": "Racer TR23 Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/9399d451d15e4a0e97e0f5b948a01268_9366/Racer_TR23_Schuh_Schwarz_IG7322_01_standard.jpg",
+    "description": "Racer TR23 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Carbon"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IE8574",
+    "name": "Runfalcon 5 Kids Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/82793ca0464d4259bae948705140d4be_9366/Runfalcon_5_Kids_Schuh_Schwarz_IE8574_01_standard.jpg",
+    "description": "Runfalcon 5 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "JQ2554",
+    "name": "Adizero Boston 12 Laufschuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/edac09cbbc8a41f28db1990b71d1458f_9366/Adizero_Boston_12_Laufschuh_Weiss_JQ2554_01_00_standard.jpg",
+    "description": "Adizero Boston 12 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black",
+      "Lucid Red"
+    ],
+    "bestForWear": "Racing",
+    "gender": "W"
+  },
+  {
+    "id": "IH5418",
+    "name": "Breaknet Sleek Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/ee187ff607df4717aaac8864ebaa796e_9366/Breaknet_Sleek_Schuh_Weiss_IH5418_01_standard.jpg",
+    "description": "Breaknet Sleek Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "W"
+  },
+  {
+    "id": "IE8589",
+    "name": "Runfalcon 5 Kids Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/62f1a7922a0b4ab088d66371113bfe4d_9366/Runfalcon_5_Kids_Schuh_Schwarz_IE8589_01_standard.jpg",
+    "description": "Runfalcon 5 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "IF9191",
+    "name": "Pureboost 5 Laufschuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/a37507c846454729949187693746bd41_9366/Pureboost_5_Laufschuh_Schwarz_IF9191_01_00_standard.jpg",
+    "description": "Pureboost 5 Laufschuh là mẫu giày Adidas với phong cách Everyday và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White",
+      "Grey Five"
+    ],
+    "bestForWear": "Everyday",
+    "gender": "U"
+  },
+  {
+    "id": "HP6009",
+    "name": "VS Pace 2.0 Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/cfb3a0bed9164feeb814af49010cbd44_9366/VS_Pace_2.0_Schuh_Schwarz_HP6009_01_standard.jpg",
+    "description": "VS Pace 2.0 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IG7324",
+    "name": "Racer TR23 Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/c21738713fe44ed1836b80c9d5530e69_9366/Racer_TR23_Schuh_Weiss_IG7324_01_standard.jpg",
+    "description": "Racer TR23 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Grey Six"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "W"
+  },
+  {
+    "id": "IF9383",
+    "name": "Adizero SL2 Laufschuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/5eb530c22be94b369fec7ff9d2cbc453_9366/Adizero_SL2_Laufschuh_Weiss_IF9383_HM1.jpg",
+    "description": "Adizero SL2 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Royal Blue",
+      "Pure Ruby"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "IE5989",
+    "name": "Tensaur Run 2.0 Kids Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/2e55c90984b04e17aef3e979736c6de1_9366/Tensaur_Run_2.0_Kids_Schuh_Blau_IE5989_01_standard.jpg",
+    "description": "Tensaur Run 2.0 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Bright Royal.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Bright Royal",
+      "Cloud White",
+      "Dark Blue"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "IH4976",
+    "name": "VS Pace 2.0 Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/eca6755c6ab145fbb5dfcff28d184a72_9366/VS_Pace_2.0_Schuh_Grau_IH4976_01_standard.jpg",
+    "description": "VS Pace 2.0 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Grey One.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Grey One",
+      "Cloud White",
+      "Preloved Scarlet"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IE0922",
+    "name": "Tensaur Hook and Loop Schuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/db5f4068e173426884a54a63a68e4080_9366/Tensaur_Hook_and_Loop_Schuh_Blau_IE0922_01_standard.jpg",
+    "description": "Tensaur Hook and Loop Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Dark Blue.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Dark Blue",
+      "Cloud White",
+      "Blue Burst"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "IH5685",
+    "name": "Adizero Prime X 2.0 STRUNG Laufschuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/f6d19c5f4a554bab9b4bf49a8533a39e_9366/Adizero_Prime_X_2.0_STRUNG_Laufschuh_Weiss_IH5685_HM1.jpg",
+    "description": "Adizero Prime X 2.0 STRUNG Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black",
+      "Lucid Red"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "ID0334",
+    "name": "Racer TR23 Kids Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/2e382bb49d4f41a2bb02e0ea960fefa7_9366/Racer_TR23_Kids_Schuh_Schwarz_ID0334_01_standard.jpg",
+    "description": "Racer TR23 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White",
+      "Solar Red"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "HP6005",
+    "name": "VS Pace 2.0 Schuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Nam",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/84f34a70ed2749198eb0af46014ee155_9366/VS_Pace_2.0_Schuh_Blau_HP6005_01_standard.jpg",
+    "description": "VS Pace 2.0 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Shadow Navy.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Shadow Navy",
+      "Cloud White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "M"
+  },
+  {
+    "id": "GW9196",
+    "name": "Grand Court Cloudfoam Comfort Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/421756b633a84c3580a4ae8901801435_9366/Grand_Court_Cloudfoam_Comfort_Schuh_Schwarz_GW9196_01_00_standard.jpg",
+    "description": "Grand Court Cloudfoam Comfort Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White"
+    ],
+    "bestForWear": "City",
+    "gender": "U"
+  },
+  {
+    "id": "JI0382",
+    "name": "Mullaly Low Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/01196a9c95ca49cfb4645f69ae3191ef_9366/Mullaly_Low_Schuh_Schwarz_JI0382_01_standard.jpg",
+    "description": "Mullaly Low Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Carbon",
+      "Cloud White"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "JI0383",
+    "name": "Mullaly Low Schuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/60aa849a4c044a189bd58477908d0e2a_9366/Mullaly_Low_Schuh_Weiss_JI0383_01_standard.jpg",
+    "description": "Mullaly Low Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cloud White",
+      "Alumina"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "JI4480",
+    "name": "Adizero Boston 12 Laufschuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Nữ",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/fba091d876c144aa86afd63c1bbabe86_9366/Adizero_Boston_12_Laufschuh_Weiss_JI4480_HM1.jpg",
+    "description": "Adizero Boston 12 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Core White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core White",
+      "Matte Silver",
+      "Pure Ruby"
+    ],
+    "bestForWear": "Racing",
+    "gender": "W"
+  },
+  {
+    "id": "GY2326",
+    "name": "Grand Court Lifestyle Lace Tennis Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/49e9cef64c6044f284bdae2b004774d0_9366/Grand_Court_Lifestyle_Lace_Tennis_Schuh_Weiss_GY2326_01_standard.jpg",
+    "description": "Grand Court Lifestyle Lace Tennis Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Cloud White",
+      "Iridescent"
+    ],
+    "bestForWear": "City",
+    "gender": "K"
+  },
+  {
+    "id": "GW3020",
+    "name": "Hoops 3.0 Mid Classic Vintage Schuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/ebe01e76794b4d8cbd56adc5016cdbda_9366/Hoops_3.0_Mid_Classic_Vintage_Schuh_Schwarz_GW3020_01_standard.jpg",
+    "description": "Hoops 3.0 Mid Classic Vintage Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Cloud White",
+      "Grey Six"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "GW6422",
+    "name": "Tensaur Sport Training Lace Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/aa53a0a800c846abb44aae8a00367e1d_9366/Tensaur_Sport_Training_Lace_Schuh_Weiss_GW6422_01_standard.jpg",
+    "description": "Tensaur Sport Training Lace Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "GW1987",
+    "name": "Tensaur Hook and Loop Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/000417a1fa614caba666ae8c016fb389_9366/Tensaur_Hook_and_Loop_Schuh_Weiss_GW1987_01_standard.jpg",
+    "description": "Tensaur Hook and Loop Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Cloud White",
+      "Grey One"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "IG1979",
+    "name": "Adizero Takumi Sen 10 Laufschuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/e4f8063bd460486b843ae98398eeb113_9366/Adizero_Takumi_Sen_10_Laufschuh_Grau_IG1979_HM1.jpg",
+    "description": "Adizero Takumi Sen 10 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Dash Grey.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Dash Grey",
+      "Lucid Red",
+      "Glory Grey"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "IE3549",
+    "name": "Tensaur Run 2.0 Kids Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/ee2f69e9412f42f7bd7c5be118a2f9f3_9366/Tensaur_Run_2.0_Kids_Schuh_Blau_IE3549_01_standard.jpg",
+    "description": "Tensaur Run 2.0 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Bright Royal.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Bright Royal",
+      "Cloud White",
+      "Dark Blue"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "JI4472",
+    "name": "Adizero Boston 12 Laufschuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/959c50a4907640b4b7fd2db73f05dc4d_9366/Adizero_Boston_12_Laufschuh_Grau_JI4472_HM1.jpg",
+    "description": "Adizero Boston 12 Laufschuh là mẫu giày Adidas với phong cách Racing và tông màu chủ đạo Dash Grey.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Dash Grey",
+      "Lucid Red",
+      "Lucid Lemon"
+    ],
+    "bestForWear": "Racing",
+    "gender": "U"
+  },
+  {
+    "id": "IF7314",
+    "name": "Kaptir 3.0 Schuh",
+    "price": 1899000,
+    "oldPrice": 2299000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/39c8db0826094408b9b0211e3a807ff0_9366/Kaptir_3.0_Schuh_Schwarz_IF7314_01_standard.jpg",
+    "description": "Kaptir 3.0 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "White",
+      "Black"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "GW6511",
+    "name": "Grand Court Lifestyle Tennis Lace-Up Schuh",
+    "price": 2099000,
+    "oldPrice": 2499000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/02cd9a97ce874d89ba17ae2b003ebe50_9366/Grand_Court_Lifestyle_Tennis_Lace-Up_Schuh_Weiss_GW6511_01_standard.jpg",
+    "description": "Grand Court Lifestyle Tennis Lace-Up Schuh là mẫu giày Adidas với phong cách City và tông màu chủ đạo Cloud White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "City",
+    "gender": "K"
+  },
+  {
+    "id": "JI0828",
+    "name": "Mullaly Low Schuh",
+    "price": 2299000,
+    "oldPrice": 2699000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/67661fcf8925424aa2e5c173dcdfd42c_9366/Mullaly_Low_Schuh_Weiss_JI0828_01_standard.jpg",
+    "description": "Mullaly Low Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Cream White.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Cream White",
+      "Cloud White",
+      "Alumina"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "GW6439",
+    "name": "Tensaur Hook and Loop Schuh",
+    "price": 2499000,
+    "oldPrice": 2899000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/e189e17028ba4dbfa19bae9200dcfc43_9366/Tensaur_Hook_and_Loop_Schuh_Schwarz_GW6439_01_standard.jpg",
+    "description": "Tensaur Hook and Loop Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Core Black",
+      "Grey Six"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  },
+  {
+    "id": "JI1897",
+    "name": "NY 90 Schuh",
+    "price": 1499000,
+    "oldPrice": 1899000,
+    "category": "Unisex",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/cbcee9fd98784f43bdd5deed98c04a5e_9366/NY_90_Schuh_Schwarz_JI1897_01_standard.jpg",
+    "description": "NY 90 Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Core Black.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "colors": [
+      "Core Black",
+      "Carbon"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "U"
+  },
+  {
+    "id": "IE6013",
+    "name": "Tensaur Run 3.0 Kids Schuh",
+    "price": 1699000,
+    "oldPrice": 2099000,
+    "category": "Trẻ em",
+    "imageUrl": "https://assets.adidas.com/images/w_600,f_auto,q_auto/7ab9a6fb4ec3497a97e014ac6b4a52d4_9366/Tensaur_Run_3.0_Kids_Schuh_Grau_IE6013_01_standard.jpg",
+    "description": "Tensaur Run 3.0 Kids Schuh là mẫu giày Adidas với phong cách Neutral và tông màu chủ đạo Grey Four.",
+    "isNew": true,
+    "isTrending": false,
+    "sizes": [
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "colors": [
+      "Grey Four",
+      "Cloud White",
+      "Core Black"
+    ],
+    "bestForWear": "Neutral",
+    "gender": "K"
+  }
+]

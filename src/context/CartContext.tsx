@@ -1,5 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  setDoc,
+  deleteDoc,
+  query,
+  where,
+} from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { useAuth } from './AuthContext';
 
 interface CartItem {
@@ -20,6 +30,11 @@ interface CartContextValue {
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
+const COL = 'cartItems';
+
+function cartDocId(userId: string, productId: string, size: string, color: string) {
+  return [userId, productId, size, color].join('__');
+}
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
@@ -27,9 +42,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      loadCartItems();
-    } else {
+    if (user) loadCartItems();
+    else {
       setItems([]);
       setLoading(false);
     }
@@ -37,141 +51,84 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const loadCartItems = async () => {
     if (!user) return;
-
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('cart_items')
-        .select('product_id, size, color, quantity')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-
+      const q = query(collection(db, COL), where('userId', '==', user.id));
+      const snap = await getDocs(q);
       setItems(
-        (data || []).map((item) => ({
-          productId: item.product_id,
-          size: item.size,
-          color: item.color,
-          quantity: item.quantity,
-        })),
+        snap.docs.map((d) => {
+          const x = d.data();
+          return {
+            productId: x.productId,
+            size: x.size,
+            color: x.color,
+            quantity: x.quantity,
+          };
+        })
       );
-    } catch (error) {
-      console.error('Error loading cart:', error);
+    } catch (e) {
+      console.error('Error loading cart:', e);
     } finally {
       setLoading(false);
     }
   };
 
   const addItem = async (item: CartItem) => {
-    if (!user) {
-      throw new Error('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
-    }
-
-    try {
-      // Check if item already exists
-      const { data: existing } = await supabase
-        .from('cart_items')
-        .select('id, quantity')
-        .eq('user_id', user.id)
-        .eq('product_id', item.productId)
-        .eq('size', item.size)
-        .eq('color', item.color)
-        .single();
-
-      if (existing) {
-        // Update quantity
-        const { error } = await supabase
-          .from('cart_items')
-          .update({ quantity: existing.quantity + item.quantity })
-          .eq('id', existing.id);
-
-        if (error) throw error;
-      } else {
-        // Insert new item
-        const { error } = await supabase.from('cart_items').insert({
-          user_id: user.id,
-          product_id: item.productId,
-          size: item.size,
-          color: item.color,
-          quantity: item.quantity,
-        });
-
-        if (error) throw error;
-      }
-
-      await loadCartItems();
-    } catch (error: any) {
-      console.error('Error adding to cart:', error);
-      throw error;
-    }
+    if (!user) throw new Error('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
+    const id = cartDocId(user.id, item.productId, item.size, item.color);
+    const ref = doc(db, COL, id);
+    const snap = await getDoc(ref);
+    const qty = snap.exists()
+      ? (snap.data()?.quantity ?? 0) + item.quantity
+      : item.quantity;
+    await setDoc(ref, {
+      userId: user.id,
+      productId: item.productId,
+      size: item.size,
+      color: item.color,
+      quantity: qty,
+    });
+    await loadCartItems();
   };
 
   const updateItem = async (
     productId: string,
     size: string,
     color: string,
-    quantity: number,
+    quantity: number
   ) => {
     if (!user) return;
-
-    try {
-      if (quantity <= 0) {
-        await removeItem(productId, size, color);
-        return;
-      }
-
-      const { error } = await supabase
-        .from('cart_items')
-        .update({ quantity })
-        .eq('user_id', user.id)
-        .eq('product_id', productId)
-        .eq('size', size)
-        .eq('color', color);
-
-      if (error) throw error;
-
-      await loadCartItems();
-    } catch (error) {
-      console.error('Error updating cart item:', error);
+    if (quantity <= 0) {
+      await removeItem(productId, size, color);
+      return;
     }
+    const id = cartDocId(user.id, productId, size, color);
+    await setDoc(doc(db, COL, id), {
+      userId: user.id,
+      productId,
+      size,
+      color,
+      quantity,
+    });
+    await loadCartItems();
   };
 
   const removeItem = async (productId: string, size: string, color: string) => {
     if (!user) return;
-
-    try {
-      const { error } = await supabase
-        .from('cart_items')
-        .delete()
-        .eq('user_id', user.id)
-        .eq('product_id', productId)
-        .eq('size', size)
-        .eq('color', color);
-
-      if (error) throw error;
-
-      await loadCartItems();
-    } catch (error) {
-      console.error('Error removing cart item:', error);
-    }
+    const id = cartDocId(user.id, productId, size, color);
+    await deleteDoc(doc(db, COL, id));
+    await loadCartItems();
   };
 
   const clearCart = async () => {
     if (!user) return;
-
-    try {
-      const { error } = await supabase.from('cart_items').delete().eq('user_id', user.id);
-
-      if (error) throw error;
-
-      await loadCartItems();
-    } catch (error) {
-      console.error('Error clearing cart:', error);
-    }
+    const q = query(collection(db, COL), where('userId', '==', user.id));
+    const snap = await getDocs(q);
+    await Promise.all(snap.docs.map((d) => deleteDoc(d.ref)));
+    await loadCartItems();
   };
 
-  const totalCount = items.reduce((sum, it) => sum + it.quantity, 0);
+  const totalCount = items.reduce((s, i) => s + i.quantity, 0);
 
   return (
     <CartContext.Provider
@@ -184,9 +141,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 export const useCart = (): CartContextValue => {
   const ctx = useContext(CartContext);
-  if (!ctx) {
-    throw new Error('useCart must be used within CartProvider');
-  }
+  if (!ctx) throw new Error('useCart must be used within CartProvider');
   return ctx;
 };
-

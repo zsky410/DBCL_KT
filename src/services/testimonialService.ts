@@ -1,4 +1,5 @@
-import { supabase } from '../lib/supabase';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 export interface Testimonial {
   id: string;
@@ -9,26 +10,24 @@ export interface Testimonial {
   avatar: string;
 }
 
+const COL = 'testimonials';
+
 export const testimonialService = {
   async getAll(): Promise<Testimonial[]> {
-    const { data, error } = await supabase
-      .from('testimonials')
-      .select('*')
-      .eq('is_approved', true)
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error fetching testimonials:', error);
-      return [];
-    }
-
-    return (data || []).map((t) => ({
-      id: t.id,
-      name: t.name,
-      role: t.role,
-      rating: t.rating,
-      text: t.text,
-      avatar: t.avatar_url || 'https://i.pravatar.cc/48',
-    }));
+    const snap = await getDocs(collection(db, COL));
+    return snap.docs
+      .map((d) => {
+        const data = d.data();
+        if (!data || data.isApproved === false) return null;
+        return {
+          id: d.id,
+          name: data.name ?? '',
+          role: data.role ?? 'Khách hàng',
+          rating: Number(data.rating ?? 5),
+          text: data.text ?? '',
+          avatar: data.avatarUrl ?? data.avatar_url ?? 'https://i.pravatar.cc/48',
+        };
+      })
+      .filter(Boolean) as Testimonial[];
   },
 };

@@ -6,7 +6,8 @@ import { useNotification } from '../context/NotificationContext';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { productService, Product } from '../services/productService';
-import { supabase } from '../lib/supabase';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 interface CartProduct extends Product {
   size: string;
@@ -40,6 +41,10 @@ export const CheckoutPage: React.FC = () => {
       navigate('/cart');
     }
   }, [user, authLoading, navigate, notify]);
+
+  useEffect(() => {
+    if (user?.email) setFormData((f) => ({ ...f, email: user.email }));
+  }, [user?.email]);
 
   if (authLoading) {
     return (
@@ -105,44 +110,30 @@ export const CheckoutPage: React.FC = () => {
     setSubmitting(true);
 
     try {
-      // Create order
-      const { data: order, error: orderError } = await supabase
-        .from('orders')
-        .insert({
-          user_id: user.id,
-          email: formData.email,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          address: formData.address,
-          city: formData.city,
-          zip_code: formData.zipCode,
-          phone: formData.phone,
-          subtotal,
-          shipping,
-          total,
-          payment_method: paymentMethod,
-          status: 'pending',
-        })
-        .select()
-        .single();
-
-      if (orderError) throw orderError;
-
-      // Create order items
-      const orderItems = cartProducts.map((item) => ({
-        order_id: order.id,
-        product_id: item.id,
-        size: item.size,
-        color: item.color,
-        quantity: item.quantity,
-        price: item.price,
-      }));
-
-      const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-
-      if (itemsError) throw itemsError;
-
-      // Clear cart
+      const orderData = {
+        userId: user.id,
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        address: formData.address,
+        city: formData.city,
+        zipCode: formData.zipCode,
+        phone: formData.phone,
+        subtotal,
+        shipping,
+        total,
+        paymentMethod,
+        status: 'pending',
+        createdAt: new Date(),
+        items: cartProducts.map((item) => ({
+          productId: item.id,
+          size: item.size,
+          color: item.color,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+      };
+      await addDoc(collection(db, 'orders'), orderData);
       await clearCart();
 
       notify('success', 'Đặt hàng thành công! Cảm ơn bạn đã mua sắm.');

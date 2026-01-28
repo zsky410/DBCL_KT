@@ -1,6 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User as SupabaseUser } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  User as FirebaseUser,
+} from 'firebase/auth';
+import { auth } from '../lib/firebase';
 
 interface User {
   id: string;
@@ -18,118 +25,51 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+function toUser(fb: FirebaseUser | null): User | null {
+  if (!fb) return null;
+  return {
+    id: fb.uid,
+    email: fb.email || '',
+    name: fb.displayName || null,
+  };
+}
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        loadUserProfile(session.user);
-      } else {
-        setLoading(false);
-      }
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      if (session?.user) {
-        await loadUserProfile(session.user);
-      } else {
-        setUser(null);
-        setLoading(false);
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  const loadUserProfile = async (supabaseUser: SupabaseUser) => {
-    try {
-      // Get user profile
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('full_name')
-        .eq('id', supabaseUser.id)
-        .single();
-
-      setUser({
-        id: supabaseUser.id,
-        email: supabaseUser.email || '',
-        name: profile?.full_name || supabaseUser.user_metadata?.full_name || null,
-      });
-    } catch (error) {
-      // If profile doesn't exist, use metadata
-      setUser({
-        id: supabaseUser.id,
-        email: supabaseUser.email || '',
-        name: supabaseUser.user_metadata?.full_name || null,
-      });
-    } finally {
+    const unsub = onAuthStateChanged(auth, (fbUser) => {
+      setUser(toUser(fbUser));
       setLoading(false);
-    }
-  };
+    });
+    return () => unsub();
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        return { success: false, error: error.message };
-      }
-
-      if (data.user) {
-        await loadUserProfile(data.user);
-      }
-
+      await signInWithEmailAndPassword(auth, email, password);
       return { success: true };
-    } catch (error: any) {
-      return { success: false, error: error.message || 'Đăng nhập thất bại' };
+    } catch (e: unknown) {
+      const err = e as { message?: string };
+      return { success: false, error: err.message || 'Đăng nhập thất bại' };
     }
   };
 
   const signup = async (name: string, email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: name,
-          },
-        },
-      });
-
-      if (error) {
-        return { success: false, error: error.message };
-      }
-
-      if (data.user) {
-        // Create profile
-        await supabase.from('profiles').insert({
-          id: data.user.id,
-          full_name: name,
-        });
-
-        await loadUserProfile(data.user);
-      }
-
+      const { user: fbUser } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(fbUser, { displayName: name });
+      setUser(toUser(fbUser));
       return { success: true };
-    } catch (error: any) {
-      return { success: false, error: error.message || 'Đăng ký thất bại' };
+    } catch (e: unknown) {
+      const err = e as { message?: string };
+      return { success: false, error: err.message || 'Đăng ký thất bại' };
     }
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    await signOut(auth);
     setUser(null);
   };
 
@@ -142,9 +82,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 export const useAuth = (): AuthContextValue => {
   const ctx = useContext(AuthContext);
-  if (!ctx) {
-    throw new Error('useAuth must be used within AuthProvider');
-  }
+  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 };
-

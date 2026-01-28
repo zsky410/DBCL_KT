@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { Header } from '../components/Header';
 import { Footer } from '../sections/Footer';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabase';
 import { productService } from '../services/productService';
 
 type OrderRow = {
   id: string;
-  user_id: string;
+  userId: string;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   address: string;
   city: string;
-  zip_code: string;
+  zipCode: string;
   phone: string;
   subtotal: number;
   shipping: number;
   total: number;
-  payment_method: string;
+  paymentMethod: string;
   status: string;
-  created_at: string;
-  order_items?: Array<{
-    id?: string;
-    order_id: string;
-    product_id: string;
+  createdAt: { toDate?: () => Date } | Date;
+  items: Array<{
+    productId: string;
     size: string;
     color: string;
     quantity: number;
@@ -41,8 +40,11 @@ function formatVND(n: number) {
   }).format(n);
 }
 
-function formatDate(s: string) {
-  return new Date(s).toLocaleDateString('vi-VN', {
+function formatDate(src: { toDate?: () => Date } | Date | string) {
+  const d = typeof src === 'object' && src && 'toDate' in src && typeof (src as { toDate: () => Date }).toDate === 'function'
+    ? (src as { toDate: () => Date }).toDate()
+    : new Date(src as string);
+  return d.toLocaleDateString('vi-VN', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -80,28 +82,50 @@ export const ProfilePage: React.FC = () => {
 
     async function load() {
       try {
-        const { data, error } = await supabase
-          .from('orders')
-          .select('*, order_items(*)')
-          .eq('user_id', user!.id)
-          .order('created_at', { ascending: false });
-
-        if (error) throw error;
+        const q = query(
+          collection(db, 'orders'),
+          where('userId', '==', user!.id)
+        );
+        const snap = await getDocs(q);
         if (cancelled) return;
 
-        const rows = (data || []) as OrderRow[];
+        const rows: OrderRow[] = snap.docs
+          .map((d) => {
+          const x = d.data();
+          return {
+            id: d.id,
+            userId: x.userId,
+            email: x.email,
+            firstName: x.firstName,
+            lastName: x.lastName,
+            address: x.address,
+            city: x.city,
+            zipCode: x.zipCode,
+            phone: x.phone,
+            subtotal: x.subtotal,
+            shipping: x.shipping,
+            total: x.total,
+            paymentMethod: x.paymentMethod,
+            status: x.status,
+            createdAt: x.createdAt,
+            items: x.items ?? [],
+          };
+        })
+          .sort((a, b) => {
+            const ta = (a.createdAt as { toDate?: () => Date })?.toDate?.() ?? new Date(0);
+            const tb = (b.createdAt as { toDate?: () => Date })?.toDate?.() ?? new Date(0);
+            return tb.getTime() - ta.getTime();
+          });
         setOrders(rows);
 
         const ids = new Set<string>();
-        rows.forEach((o) => {
-          (o.order_items || []).forEach((i) => ids.add(i.product_id));
-        });
+        rows.forEach((o) => o.items.forEach((i) => ids.add(i.productId)));
         const names: Record<string, string> = {};
         await Promise.all(
           Array.from(ids).map(async (id) => {
             const p = await productService.getById(id);
             if (p) names[id] = p.name;
-          }),
+          })
         );
         if (!cancelled) setProductNames(names);
       } catch (e) {
@@ -134,79 +158,77 @@ export const ProfilePage: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
       <main className="flex-1">
-      <div className="container-wide py-12">
-        <h1 className="text-2xl font-semibold mb-2">Đơn hàng của tôi</h1>
-        <p className="text-gray-600 text-sm mb-8">{user.email}</p>
+        <div className="container-wide py-12">
+          <h1 className="text-2xl font-semibold mb-2">Đơn hàng của tôi</h1>
+          <p className="text-gray-600 text-sm mb-8">{user.email}</p>
 
-        {loading ? (
-          <p className="text-gray-500">Đang tải...</p>
-        ) : orders.length === 0 ? (
-          <div className="rounded-xl border border-gray-200 bg-gray-50/50 p-12 text-center">
-            <p className="text-gray-600">Bạn chưa có đơn hàng nào.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {orders.map((order) => {
-              const open = expandedId === order.id;
-              const items = order.order_items || [];
-              return (
-                <div
-                  key={order.id}
-                  className="rounded-xl border border-gray-200 bg-white overflow-hidden"
-                >
-                  <button
-                    type="button"
-                    className="w-full flex flex-wrap items-center justify-between gap-4 px-4 py-4 text-left hover:bg-gray-50/50 transition"
-                    onClick={() => setExpandedId(open ? null : order.id)}
+          {loading ? (
+            <p className="text-gray-500">Đang tải...</p>
+          ) : orders.length === 0 ? (
+            <div className="rounded-xl border border-gray-200 bg-gray-50/50 p-12 text-center">
+              <p className="text-gray-600">Bạn chưa có đơn hàng nào.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {orders.map((order) => {
+                const open = expandedId === order.id;
+                const items = order.items ?? [];
+                return (
+                  <div
+                    key={order.id}
+                    className="rounded-xl border border-gray-200 bg-white overflow-hidden"
                   >
-                    <div className="flex flex-wrap items-center gap-4">
-                      <span className="font-medium">
-                        Đơn #{order.id.slice(0, 8)}
-                      </span>
-                      <span className="text-gray-500 text-sm">
-                        {formatDate(order.created_at)}
-                      </span>
-                      <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${
-                          order.status === 'delivered'
-                            ? 'bg-green-100 text-green-800'
-                            : order.status === 'cancelled'
-                              ? 'bg-red-100 text-red-800'
-                              : 'bg-amber-100 text-amber-800'
-                        }`}
-                      >
-                        {STATUS_LABEL[order.status] ?? order.status}
-                      </span>
-                    </div>
-                    <span className="font-semibold">{formatVND(order.total)}</span>
-                  </button>
-                  {open && items.length > 0 && (
-                    <div className="border-t border-gray-100 px-4 py-3 bg-gray-50/30">
-                      <p className="text-xs font-medium text-gray-500 mb-2">
-                        Chi tiết đơn hàng
-                      </p>
-                      <ul className="space-y-2">
-                        {items.map((item, idx) => (
-                          <li
-                            key={item.order_id + item.product_id + idx}
-                            className="flex justify-between text-sm"
-                          >
-                            <span>
-                              {productNames[item.product_id] || item.product_id} —{' '}
-                              {item.size} / {item.color} × {item.quantity}
-                            </span>
-                            <span>{formatVND(item.price * item.quantity)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                    <button
+                      type="button"
+                      className="w-full flex flex-wrap items-center justify-between gap-4 px-4 py-4 text-left hover:bg-gray-50/50 transition"
+                      onClick={() => setExpandedId(open ? null : order.id)}
+                    >
+                      <div className="flex flex-wrap items-center gap-4">
+                        <span className="font-medium">Đơn #{order.id.slice(0, 8)}</span>
+                        <span className="text-gray-500 text-sm">
+                          {formatDate(order.createdAt)}
+                        </span>
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full ${
+                            order.status === 'delivered'
+                              ? 'bg-green-100 text-green-800'
+                              : order.status === 'cancelled'
+                                ? 'bg-red-100 text-red-800'
+                                : 'bg-amber-100 text-amber-800'
+                          }`}
+                        >
+                          {STATUS_LABEL[order.status] ?? order.status}
+                        </span>
+                      </div>
+                      <span className="font-semibold">{formatVND(order.total)}</span>
+                    </button>
+                    {open && items.length > 0 && (
+                      <div className="border-t border-gray-100 px-4 py-3 bg-gray-50/30">
+                        <p className="text-xs font-medium text-gray-500 mb-2">
+                          Chi tiết đơn hàng
+                        </p>
+                        <ul className="space-y-2">
+                          {items.map((item, idx) => (
+                            <li
+                              key={item.productId + item.size + item.color + idx}
+                              className="flex justify-between text-sm"
+                            >
+                              <span>
+                                {productNames[item.productId] || item.productId} —{' '}
+                                {item.size} / {item.color} × {item.quantity}
+                              </span>
+                              <span>{formatVND(item.price * item.quantity)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </main>
       <Footer />
     </div>
